@@ -7,10 +7,10 @@ begin
 end;
 
 --drop team
-create or replace procedure DeleteTeam (userid in number, teamid in number)
+create or replace procedure DeleteTeam (teamid in number)
 is 
 begin
-  delete from teams where managerId = userid and id = teamid;
+  delete from teams where and id = teamid;
   commit;
 end;
 
