@@ -11,3 +11,5 @@ commit;
 
 insert into Team (id, teamName, managerId, categoryId) values(1, 'FirstTeam', 1, 1);
 commit;
+
+
