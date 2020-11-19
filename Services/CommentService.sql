@@ -11,13 +11,10 @@ begin
 end;
 
 --delete comment 
-create or replace procedure DeleteComment
-                              (commentId in number,
-                              userid in number, 
-                              taskId in number) 
+create or replace procedure DeleteComment(commentId in number) 
 is 
 begin
-  delete from Comments where creatorid = userId and taskid = taskid and id = commentId;
+  delete from Comments where id = commentId;
   commit;
 end;
 
@@ -30,11 +27,9 @@ begin
 end;
 
 --delete all comments in task
-create or replace procedure DeleteCommentsInTask
-                              (userid in number, 
-                              taskId in number) 
+create or replace procedure DeleteCommentsInTask(taskId in number) 
 is 
 begin
-  delete from Comments where creatorid = userId and taskid = taskid;
+  delete from Comments where taskid = taskid;
   commit;
 end;
