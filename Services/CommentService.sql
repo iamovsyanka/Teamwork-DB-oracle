@@ -33,3 +33,11 @@ begin
   delete from Comments where taskid = taskid;
   commit;
 end;
+
+--alter comment
+create or replace procedure UpdateComment (commentContent in varchar2)
+is 
+begin
+  update Comments set commentContent = commentContent;
+  commit;
+end;
