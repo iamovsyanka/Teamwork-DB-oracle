@@ -1,6 +1,6 @@
 drop table Users;
-drop table Team;
-drop table Task;
+drop table Teams;
+drop table Tasks;
 drop table Categories;
 drop table UserRoles;
 drop table Comments;
@@ -9,5 +9,12 @@ drop table UsersTasks;
 drop table TaskStates;
 
 alter table Users drop constraint role_fk;
-alter table Team drop constraint manager_fk;
-alter table Team drop constraint category_fk;
+alter table Teams drop constraint manager_fk;
+alter table Teams drop constraint category_fk;
+alter table Tasks drop constraint state_fk;
+alter table Tasks drop constraint team_fk;
+alter table Comments drop constraint task_fk;
+alter table Comments drop constraint creator_fk;
+alter table TaskFiles drop constraint fileTask_fk;
+alter table UsersTasks drop constraint userTask_user_fk;
+alter table UsersTasks drop constraint userTask_task_fk;
