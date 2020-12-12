@@ -1,9 +1,10 @@
 begin
-  RegistrationUser('Test', 'test');
+ CURS_DB_ADMIN.userpackage.RegistrationUser('Ann', 'gmail@gmail.com' ,'test');
 end;
-
+select * from CURS_DB_ADMIN.USERS;
+select * from curs_db_admin.viewusers;
 begin
-  AuthorizeUser('Anna','help'); 
+  CURS_DB_ADMIN.userpackage.AuthorizeUser('Ann','test'); 
 end;
 begin
   ChangePassword(61,'help'); 
@@ -59,4 +60,4 @@ select * from usersteams;
 select * from tasks;
 select * from UsersTasks;
 select * from Comments;
-select * from system.users;
+select * from users;

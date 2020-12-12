@@ -1,10 +1,10 @@
-
 create table UserRoles(id number generated always as identity, 
                        role varchar2(100) not null unique,
                        constraint role_pk primary key(id));
                        
 create table Users(id number generated always as identity, 
                    username varchar2(100) not null unique,
+                   email varchar2(320) not null,
                    password varchar2(100) not null,
                    roleId number not null,
                    constraint user_pk primary key(id),
@@ -34,10 +34,11 @@ create table Tasks(id number generated always as identity,
                    dateOfDeadline date, 
                    taskStateId number not null,
                    teamId number not null,
+                   managerId number not null,
                    constraint task_pk primary key(id),
                    constraint state_fk foreign key(taskStateId) references TaskStates(id) ON DELETE CASCADE,
-                   constraint team_fk foreign key(teamId) references Teams(id) ON DELETE CASCADE);   
-                   alter table tasks add managerId number not null;
+                   constraint team_fk foreign key(teamId) references Teams(id) ON DELETE CASCADE,
+                   constraint managerId_pk foreign key(managerId) references Users(id) ON DELETE CASCADE);   
                    
 create table Comments(id number generated always as identity, 
                    creatorId number not null,

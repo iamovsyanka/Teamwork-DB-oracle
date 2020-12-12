@@ -1,0 +1,10 @@
+Create Or Replace View Viewusers As Select * From Users;
+Create Or Replace View ViewUserRoles As Select * From UserRoles;
+Create Or Replace View ViewCategories As Select * From Categories;
+Create Or Replace View ViewTeams As Select * From Teams;
+Create Or Replace View ViewTaskStates As Select * From TaskStates;
+Create Or Replace View ViewTasks As Select * From Tasks;
+Create Or Replace View ViewComments As Select * From Comments;
+Create Or Replace View ViewTaskFiles As Select * From TaskFiles;
+Create Or Replace View ViewUsersTasks As Select * From UsersTasks;
+Create Or Replace View ViewUsersTeams As Select * From UsersTeams;

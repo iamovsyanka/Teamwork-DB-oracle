@@ -1,5 +1,5 @@
 --all user teams
-CREATE OR REPLACE procedure TeamsByUser(inUserId in number, 
+create or replace procedure TeamsByUser(inUserId in number, 
                                         cursor in out sys_refcursor)
 is
 BEGIN
@@ -11,7 +11,7 @@ BEGIN
   where ut.userId = inUserId;
 end;
 
-CREATE OR REPLACE PROCEDURE ViewTeamsByUser(INUSERID IN NUMBER)
+create or replace procedure ViewTeamsByUser(INUSERID IN NUMBER)
 is
   REFCUR SYS_REFCURSOR;
   TYPE RECORDTYPE IS RECORD (COL1 NUMBER, COL2 NUMBER, COL3 VARCHAR(2000), COL4 VARCHAR(4000), COL5 NUMBER, COL6 VARCHAR(2000), COL7 NUMBER, COL8 VARCHAR(2000));
@@ -42,12 +42,12 @@ BEGIN
   CLOSE REFCUR;
 END;
 
-BEGIN
-  ViewTeamsByUser(21);
-END;
+Begin
+  Viewteamsbyuser(21);
+End;
 
 --all comments in task
-CREATE OR REPLACE procedure CommentsInTask(inTaskId in number, 
+create or replace procedure CommentsInTask(inTaskId in number, 
                                         cursor in out sys_refcursor)
 is
 BEGIN
@@ -58,7 +58,7 @@ BEGIN
   where ut.taskId = inTaskId;
 end;
 
-CREATE OR REPLACE PROCEDURE ViewCommentsInTask(inTaskId IN NUMBER)
+create or replace procedure ViewCommentsInTask(inTaskId IN NUMBER)
 is
   REFCUR SYS_REFCURSOR;
   TYPE RECORDTYPE IS RECORD (COL1 NUMBER, COL2 NUMBER, COL3 VARCHAR(2000), COL4 VARCHAR(4000), COL5 DATE);
@@ -88,7 +88,7 @@ BEGIN
 END;
 
 --all tasks in team
-CREATE OR REPLACE procedure TasksByTeam(inTeamId in number, 
+create or replace procedure TasksByTeam(inTeamId in number, 
                                         cursor in out sys_refcursor)
 is
 BEGIN
@@ -100,7 +100,7 @@ BEGIN
   where t.id = inTeamId;
 end;
 
-CREATE OR REPLACE PROCEDURE ViewTasksByTeam(inTeamId IN NUMBER)
+create or replace procedure ViewTasksByTeam(inTeamId IN NUMBER)
 is
   REFCUR SYS_REFCURSOR;
   TYPE RECORDTYPE IS RECORD (COL1 NUMBER, COL2 NUMBER, COL3 VARCHAR(100), COL4 VARCHAR(4000), COL5 DATE, COL6 DATE, COL7 NUMBER, COL8 VARCHAR(100), COL9 NUMBER, COL10 VARCHAR(100));
@@ -139,9 +139,8 @@ BEGIN
   ViewTasksByTeam(1);
 END;
 
-
 --all users in team
-CREATE OR REPLACE procedure UsersInTeam(inTeamId in number, 
+create or replace procedure UsersInTeam(inTeamId in number, 
                                         cursor in out sys_refcursor)
 is
 BEGIN
@@ -152,7 +151,7 @@ BEGIN
   where t.id = inTeamId;
 end;
 
-CREATE OR REPLACE PROCEDURE ViewUsersInTeam(inTeamId IN NUMBER)
+create or replace procedure ViewUsersInTeam(inTeamId IN NUMBER)
 is
   REFCUR SYS_REFCURSOR;
   TYPE RECORDTYPE IS RECORD (COL1 NUMBER, COL2 VARCHAR(100), COL3 NUMBER, COL4 VARCHAR(100));
@@ -180,7 +179,7 @@ BEGIN
 END;
 
 --all users in task
-CREATE OR REPLACE procedure UsersInTask(inTaskId in number, 
+create or replace procedure UsersInTask(inTaskId in number, 
                                         cursor in out sys_refcursor)
 is
 BEGIN
@@ -191,7 +190,7 @@ BEGIN
   where t.id = inTaskId;
 end;
 
-CREATE OR REPLACE PROCEDURE ViewUsersInTask(inTaskId IN NUMBER)
+create or replace procedure ViewUsersInTask(inTaskId IN NUMBER)
 is
   REFCUR SYS_REFCURSOR;
   TYPE RECORDTYPE IS RECORD (COL1 NUMBER, COL2 VARCHAR(100), COL3 NUMBER, COL4 VARCHAR(100));
@@ -219,7 +218,7 @@ BEGIN
 END;
 
 --all files in task
-CREATE OR REPLACE procedure FilesInTask(inTaskId in number, 
+create or replace procedure FilesInTask(inTaskId in number, 
                                         cursor in out sys_refcursor)
 is
 BEGIN
@@ -229,7 +228,7 @@ BEGIN
   where t.id = inTaskId;
 end;
 
-CREATE OR REPLACE PROCEDURE ViewFilesInTask(inTaskId IN NUMBER)
+create or replace procedure ViewFilesInTask(inTaskId IN NUMBER)
 is
   REFCUR SYS_REFCURSOR;
   TYPE RECORDTYPE IS RECORD (COL1 NUMBER, COL2 VARCHAR(100), COL3 VARCHAR(4000));
