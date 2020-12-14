@@ -6,7 +6,7 @@ create or replace procedure ExportUsersToXml is
   CURSOR XMLCUR IS                                                                                                     
     SELECT XMLELEMENT("USERS",    
       XMLAttributes('http://www.w3.org/2001/XMLSchema' AS "xmlns:xsi",                        
-      'http://www.oracle.com/Employee.xsd' AS "xsi:nonamespaceSchemaLocation"),
+      'http://www.oracle.com/Users.xsd' AS "xsi:nonamespaceSchemaLocation"),
       XMLAGG(XMLELEMENT("USER",
         XMLELEMENT("ID",U.ID),
         xmlelement("NAME",u.username),
@@ -92,4 +92,4 @@ BEGIN
   ImportUsersFromXml();
 END;
 
-select * from USERS;
+select * from USERS where username='XML';

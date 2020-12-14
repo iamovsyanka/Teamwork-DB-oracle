@@ -12,14 +12,12 @@ create profile PRFL_CURS limit
   
 create user CURS_DB_ADMIN identified by 123456789  
 profile PRFL_CURS;
-  
 grant all privileges to CURS_DB_ADMIN;  
 
 create user CURS_APP_ADMIN identified by 123456789  
 profile PRFL_CURS;
+grant create session to curs_app_admin;
 
 create user CURS_APP_USER identified by 123456789  
 profile PRFL_CURS;
-
-grant create session to CURS_APP_ADMIN;
 grant create session to CURS_APP_USER;

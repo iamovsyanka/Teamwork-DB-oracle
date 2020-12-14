@@ -2,7 +2,11 @@ insert into UserRoles (role) values('Admin');
 insert into UserRoles (role) values('User');
 commit;
 
-insert into Categories (category) values('Developers');
+insert into categories (category) values('Developers');
+insert into categories (category) values('Designers');
+insert into categories (category) values('Managers');
+insert into categories (category) values('Students');
+insert into categories (category) values('Others');
 commit;
 
 insert into Team (teamName, managerId, categoryId) values('FirstTeam', 1, 1);
@@ -13,4 +17,4 @@ insert into TaskStates (stateName) values('completed');
 insert into TaskStates (stateName) values('cancelled');
 commit;
 
-SELECT sys_context('USERENV', 'SID') FROM DUAL;
+select * from curs_db_admin.viewusers;

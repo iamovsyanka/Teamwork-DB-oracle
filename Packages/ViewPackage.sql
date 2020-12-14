@@ -1,5 +1,23 @@
---all user teams
-create or replace procedure TeamsByUser(inUserId in number, 
+create or replace package viewpackage as 
+  procedure teamsbyuser(inuserid in number, cursor in out sys_refcursor);
+  procedure viewteamsbyuser(inuserid in number);
+  procedure commentsintask(intaskid in number, cursor in out sys_refcursor);
+  procedure viewcommentsintask(intaskid in number);
+  procedure tasksbyteam(inteamid in number, cursor in out sys_refcursor);
+  procedure viewtasksbyteam(inteamid in number);
+  procedure usersinteam(inteamid in number, cursor in out sys_refcursor);
+  procedure viewusersinteam(inteamid in number);
+  procedure usersintask(intaskid in number, cursor in out sys_refcursor);
+  procedure viewusersintask(intaskid in number);
+  procedure filesintask(intaskid in number, cursor in out sys_refcursor);
+  procedure viewfilesintask(intaskid in number);
+  procedure getuserinformation (inuserid in number, cursor in out sys_refcursor);
+  procedure ViewUserInformaion(inUserId IN NUMBER);
+end ViewPackage;
+
+create or replace package body viewpackage as 
+  --all user teams
+procedure TeamsByUser(inUserId in number, 
                                         cursor in out sys_refcursor)
 is
 BEGIN
@@ -11,7 +29,7 @@ BEGIN
   where ut.userId = inUserId;
 end;
 
-create or replace procedure ViewTeamsByUser(INUSERID IN NUMBER)
+procedure ViewTeamsByUser(INUSERID IN NUMBER)
 is
   REFCUR SYS_REFCURSOR;
   TYPE RECORDTYPE IS RECORD (COL1 NUMBER, COL2 NUMBER, COL3 VARCHAR(2000), COL4 VARCHAR(4000), COL5 NUMBER, COL6 VARCHAR(2000), COL7 NUMBER, COL8 VARCHAR(2000));
@@ -42,12 +60,8 @@ BEGIN
   CLOSE REFCUR;
 END;
 
-Begin
-  Viewteamsbyuser(21);
-End;
-
 --all comments in task
-create or replace procedure CommentsInTask(inTaskId in number, 
+procedure CommentsInTask(inTaskId in number, 
                                         cursor in out sys_refcursor)
 is
 BEGIN
@@ -58,7 +72,7 @@ BEGIN
   where ut.taskId = inTaskId;
 end;
 
-create or replace procedure ViewCommentsInTask(inTaskId IN NUMBER)
+procedure ViewCommentsInTask(inTaskId IN NUMBER)
 is
   REFCUR SYS_REFCURSOR;
   TYPE RECORDTYPE IS RECORD (COL1 NUMBER, COL2 NUMBER, COL3 VARCHAR(2000), COL4 VARCHAR(4000), COL5 DATE);
@@ -83,12 +97,8 @@ BEGIN
   CLOSE REFCUR;
 END;
 
-begin
-  ViewCommentsInTask(1);
-END;
-
 --all tasks in team
-create or replace procedure TasksByTeam(inTeamId in number, 
+procedure TasksByTeam(inTeamId in number, 
                                         cursor in out sys_refcursor)
 is
 BEGIN
@@ -100,7 +110,7 @@ BEGIN
   where t.id = inTeamId;
 end;
 
-create or replace procedure ViewTasksByTeam(inTeamId IN NUMBER)
+procedure ViewTasksByTeam(inTeamId IN NUMBER)
 is
   REFCUR SYS_REFCURSOR;
   TYPE RECORDTYPE IS RECORD (COL1 NUMBER, COL2 NUMBER, COL3 VARCHAR(100), COL4 VARCHAR(4000), COL5 DATE, COL6 DATE, COL7 NUMBER, COL8 VARCHAR(100), COL9 NUMBER, COL10 VARCHAR(100));
@@ -133,14 +143,10 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('');
   END LOOP;
   CLOSE REFCUR;
-END;
-
-BEGIN
-  ViewTasksByTeam(1);
-END;
+end;
 
 --all users in team
-create or replace procedure UsersInTeam(inTeamId in number, 
+procedure UsersInTeam(inTeamId in number, 
                                         cursor in out sys_refcursor)
 is
 BEGIN
@@ -151,7 +157,7 @@ BEGIN
   where t.id = inTeamId;
 end;
 
-create or replace procedure ViewUsersInTeam(inTeamId IN NUMBER)
+procedure ViewUsersInTeam(inTeamId IN NUMBER)
 is
   REFCUR SYS_REFCURSOR;
   TYPE RECORDTYPE IS RECORD (COL1 NUMBER, COL2 VARCHAR(100), COL3 NUMBER, COL4 VARCHAR(100));
@@ -174,12 +180,8 @@ BEGIN
   CLOSE REFCUR;
 END;
 
-BEGIN
-  ViewUsersInTeam(1);
-END;
-
 --all users in task
-create or replace procedure UsersInTask(inTaskId in number, 
+procedure UsersInTask(inTaskId in number, 
                                         cursor in out sys_refcursor)
 is
 BEGIN
@@ -190,7 +192,7 @@ BEGIN
   where t.id = inTaskId;
 end;
 
-create or replace procedure ViewUsersInTask(inTaskId IN NUMBER)
+procedure ViewUsersInTask(inTaskId IN NUMBER)
 is
   REFCUR SYS_REFCURSOR;
   TYPE RECORDTYPE IS RECORD (COL1 NUMBER, COL2 VARCHAR(100), COL3 NUMBER, COL4 VARCHAR(100));
@@ -213,12 +215,8 @@ BEGIN
   CLOSE REFCUR;
 END;
 
-BEGIN
-  ViewUsersInTask(2);
-END;
-
 --all files in task
-create or replace procedure FilesInTask(inTaskId in number, 
+procedure FilesInTask(inTaskId in number, 
                                         cursor in out sys_refcursor)
 is
 BEGIN
@@ -228,7 +226,7 @@ BEGIN
   where t.id = inTaskId;
 end;
 
-create or replace procedure ViewFilesInTask(inTaskId IN NUMBER)
+procedure ViewFilesInTask(inTaskId IN NUMBER)
 is
   REFCUR SYS_REFCURSOR;
   TYPE RECORDTYPE IS RECORD (COL1 NUMBER, COL2 VARCHAR(100), COL3 VARCHAR(4000));
@@ -249,19 +247,15 @@ BEGIN
   CLOSE REFCUR;
 END;
 
-BEGIN
-  ViewFilesInTask(2);
-END;
-
 --get user information
-create or replace procedure GetUserInformation (inuserid in number, cursor in out sys_refcursor)
+procedure GetUserInformation (inuserid in number, cursor in out sys_refcursor)
 is
 begin
   open cursor for select u.id, u.username, u.email, u.roleid, rol.role
   from users u inner join userroles rol on rol.id=u.roleid where u.id=inuserid; 
 end;
 
-create or replace procedure ViewUserInformaion(inUserId IN NUMBER)
+procedure ViewUserInformaion(inUserId IN NUMBER)
 is
   refcur sys_refcursor;
   TYPE RECORDTYPE IS RECORD (COL1 NUMBER, COL2 VARCHAR(100), COL3 VARCHAR(320), COL4 number, COL5 varchar2(100));
@@ -285,7 +279,4 @@ begin
   END LOOP;
   close refcur;
 end;
-
-begin
-  viewuserinformaion(21);
-end;
+end viewpackage;
